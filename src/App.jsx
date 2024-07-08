@@ -1,7 +1,7 @@
 import './App.css'
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
-import {Card,Row,Col, Container, FormLabel} from 'react-bootstrap'
+import {Card,Row,Col, Container} from 'react-bootstrap'
 import { useState } from 'react';
 function App() {
  const [Reminders,setReminders]=useState([]);
@@ -93,6 +93,5 @@ const handleEdit=(index)=>{
     </>
   )
 }
-
 
 export default App
