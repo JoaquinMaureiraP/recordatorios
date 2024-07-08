@@ -8,7 +8,14 @@ function App() {
  const [Desc,setDesc]=useState('');
  const [Date,setDate]=useState('');
  const [editIndex,setEditIndex]=useState(null);
- 
+
+ const [isChecked, setIsChecked] = useState(false);
+
+ const handleCheckboxChange = () => {
+   setIsChecked(!isChecked);
+ };
+
+
  const handleSubmit=(event)=>{
    event.preventDefault();
    if(editIndex !== null){
@@ -51,7 +58,7 @@ const handleEdit=(index)=>{
       <Form.Group className="mb-3">
           <Form.Label>Fecha</Form.Label>
           <Form.Control type="date" placeholder=" " value={Date} onChange={(e)=>setDate(e.target.value)}/>
-          <Form.Check type="switch"id="custom-switch"label=" Importante"/>
+          <Form.Check type="checkbox"id="custom-switch" onChange={handleCheckboxChange} label=" Importante"/>
       </Form.Group>
         <Button type="submit">{
           editIndex!==null?'Actualizar Recordatorio':'Agregar Recordatorio'}
@@ -64,6 +71,9 @@ const handleEdit=(index)=>{
       <Col sm={6} key={index}>
             <Card style={{ width:'18rem',marginTop:'20px'}}>
                 <Card.Body>
+                {isChecked ? (
+                <span role="img" aria-label="tick">✔️</span>):(
+                <span role="img" aria-label="no-tick"></span>)}
                   <Card.Text style={{textAlign: 'Left'}}>Descripcion: {Reminders.Desc}</Card.Text>
                   <Card.Text style={{textAlign: 'Left'}}>Fecha de recordatorio: {Reminders.Date}</Card.Text>
                   <Button variant="danger" onClick={() => handleDelete(index)}>
